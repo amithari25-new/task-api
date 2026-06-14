@@ -141,7 +141,7 @@ java -jar target/task-api-1.0.0.jar
 Open your browser or Postman and hit:
 
 ```
-GET http://localhost:8080/api/v1/tasks
+GET http://localhost:8081/api/v1/tasks
 ```
 
 Expected response:
