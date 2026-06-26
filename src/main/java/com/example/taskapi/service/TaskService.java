@@ -12,7 +12,7 @@ public interface TaskService {
 
     TaskResponse getTaskById(String id);
 
-    List<TaskResponse> getAllTasks(String status);
+    List<TaskResponse> getAllTasks(String status, String page, String size);
 
     TaskResponse updateTask(String id, UpdateTaskRequest request);
 

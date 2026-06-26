@@ -1,0 +1,29 @@
+
+
+services:
+  task-api:
+    build: .
+    image: task-api:1.0.0
+    container_name: task-api-container
+    ports:
+      - "8081:8081"
+    restart: unless-stopped
+
+  mongo:
+    image: mongo:8.0
+    container_name: mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    volumes:
+        - mongo-data:/data/db
+
+
+volumes:
+    mongo-data:
+        driver: local
+
+

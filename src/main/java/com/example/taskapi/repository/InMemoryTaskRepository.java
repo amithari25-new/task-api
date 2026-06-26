@@ -25,8 +25,16 @@ public class InMemoryTaskRepository implements TaskRepository {
     }
 
     @Override
-    public List<Task> findAll() {
-        return new ArrayList<>(taskMapStore.values());
+    public List<Task> findAll(String page, String pageSize) {
+        int pageInt = Integer.parseInt(page);
+        int pageSizeInt = Integer.parseInt(pageSize);
+        int start = pageInt * pageSizeInt;
+        int end = Math.min(start+pageSizeInt, taskMapStore.size());
+//        List<Task> tasks = taskMapStore.values().stream()
+//                .filter(task -> Boolean.FALSE.equals(task.getIsDelete()))
+//                .collect(Collectors.toList());
+        List<Task> tasks = new ArrayList<>(taskMapStore.values());
+        return tasks.subList(start, end);
     }
 
     @Override
@@ -37,7 +45,10 @@ public class InMemoryTaskRepository implements TaskRepository {
 
     @Override
     public void deleteById(String id) {
-        taskMapStore.remove(id);
+        Task oldTask = taskMapStore.get(id);
+        oldTask.setIsDelete(Boolean.TRUE);
+        taskMapStore.replace(id, oldTask);
+        System.out.println("hi");
     }
 
     @Override

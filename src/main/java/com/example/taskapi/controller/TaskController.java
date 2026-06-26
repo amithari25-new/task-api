@@ -41,8 +41,10 @@ public class TaskController {
     // GET all tasks
     @GetMapping
     public ResponseEntity<ApiResponse<List<TaskResponse>>> getAllTasks(
-            @RequestParam (value = "status", required = false) String status) {
-        List<TaskResponse> tasks = taskService.getAllTasks(status);
+            @RequestParam (value = "status", required = false) String status,
+            @RequestParam (value = "page") String page,
+            @RequestParam (value = "size") String size) {
+        List<TaskResponse> tasks = taskService.getAllTasks(status, page, size);
         return ResponseEntity.ok(ApiResponse.successResponse("Tasks fetched successfully", tasks));
     }
 

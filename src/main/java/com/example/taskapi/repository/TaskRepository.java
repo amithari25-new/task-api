@@ -11,7 +11,7 @@ public interface TaskRepository {
 
     Optional<Task> findById(String id);
 
-    List<Task> findAll();
+    List<Task> findAll(String page, String pageSize);
 
     Task update(Task task);
 

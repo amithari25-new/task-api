@@ -19,4 +19,5 @@ public class TaskResponse {
     private String description;
     private TaskStatus status;
     private LocalDate dueDate;
+    private Boolean isDeleted;
 }
